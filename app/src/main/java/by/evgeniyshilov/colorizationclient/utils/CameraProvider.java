@@ -9,8 +9,8 @@ import android.util.Pair;
 
 public class CameraProvider {
 
-    public static final String PHOTO_TITLE = "New";
-    public static final String PHOTO_DESCRIPTION = "Picture for colorization";
+    private static final String PHOTO_TITLE = "New";
+    private static final String PHOTO_DESCRIPTION = "Picture for colorization";
 
     private static CameraProvider instance;
 

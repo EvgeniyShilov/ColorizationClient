@@ -42,11 +42,4 @@ public final class ImageProcessor {
         matrix.postScale(scaleWidth, scaleHeight);
         return Bitmap.createBitmap(original, 0, 0, width, height, matrix, false);
     }
-
-    public static String getBase64(Bitmap original) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        original.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
-    }
 }

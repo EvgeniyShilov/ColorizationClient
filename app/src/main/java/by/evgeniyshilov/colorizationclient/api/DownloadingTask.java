@@ -28,7 +28,7 @@ public abstract class DownloadingTask extends AsyncTask<Object, Object, Throwabl
         }
     }
 
-    public final Bitmap getBitmap() {
+    protected final Bitmap getBitmap() {
         return bitmap;
     }
 }

@@ -19,12 +19,6 @@
             </intent-filter>
         </service>
 
-        <service android:name=".gcm.FirebaseInstanceIdService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-
         <activity android:name=".activities.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

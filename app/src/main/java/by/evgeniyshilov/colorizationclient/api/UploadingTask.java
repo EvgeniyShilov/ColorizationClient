@@ -2,12 +2,12 @@ package by.evgeniyshilov.colorizationclient.api;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.Base64;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import by.evgeniyshilov.colorizationclient.utils.ImageProcessor;
 
 public abstract class UploadingTask extends AsyncTask<Object, Object, Throwable> {
 
@@ -20,7 +20,7 @@ public abstract class UploadingTask extends AsyncTask<Object, Object, Throwable>
     @Override
     protected final Throwable doInBackground(Object... params) {
         try {
-            String base64 = ImageProcessor.getBase64(bitmap);
+            String base64 = getBase64(bitmap);
             String id = "123";
             API.getInterface().loadImage(FirebaseInstanceId.getInstance().getToken(), id, base64)
                     .execute();
@@ -28,5 +28,12 @@ public abstract class UploadingTask extends AsyncTask<Object, Object, Throwable>
         } catch (IOException e) {
             return e;
         }
+    }
+
+    private String getBase64(Bitmap original) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        original.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 }
