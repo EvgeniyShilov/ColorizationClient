@@ -8,6 +8,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 public abstract class UploadingTask extends AsyncTask<Object, Object, Throwable> {
 
@@ -21,7 +22,7 @@ public abstract class UploadingTask extends AsyncTask<Object, Object, Throwable>
     protected final Throwable doInBackground(Object... params) {
         try {
             String base64 = getBase64(bitmap);
-            String id = "123";
+            String id = getRandomId();
             API.getInterface().loadImage(FirebaseInstanceId.getInstance().getToken(), id, base64)
                     .execute();
             return null;
@@ -35,5 +36,9 @@ public abstract class UploadingTask extends AsyncTask<Object, Object, Throwable>
         original.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+
+    private String getRandomId() {
+        return String.valueOf((new Random()).nextLong());
     }
 }
