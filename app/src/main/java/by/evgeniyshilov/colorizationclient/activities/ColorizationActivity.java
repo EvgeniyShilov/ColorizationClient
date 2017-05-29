@@ -17,10 +17,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import by.evgeniyshilov.colorizationclient.R;
 import by.evgeniyshilov.colorizationclient.api.DownloadingTask;
 import by.evgeniyshilov.colorizationclient.api.UploadingTask;
 import by.evgeniyshilov.colorizationclient.utils.BitmapHolder;
+import by.evgeniyshilov.colorizationclient.utils.ColorizationEvaluator;
 
 public class ColorizationActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -97,6 +100,7 @@ public class ColorizationActivity extends AppCompatActivity implements View.OnCl
 
     private static class PushHandler extends BroadcastReceiver {
 
+        private static final String EVENT_NAME = "evaluation";
         private ColorizationActivity activity;
 
         public PushHandler(ColorizationActivity activity) {
@@ -117,6 +121,8 @@ public class ColorizationActivity extends AppCompatActivity implements View.OnCl
                             if (tr == null) {
                                 activity.bitmap = getBitmap();
                                 activity.imageView.setImageBitmap(activity.bitmap);
+                                sendEvaluation(getEvaluation());
+                                ColorizationEvaluator.clearBitmaps();
                             } else Toast.makeText(activity, tr.getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -124,6 +130,14 @@ public class ColorizationActivity extends AppCompatActivity implements View.OnCl
                     AsyncTaskCompat.executeParallel(activity.currentTask);
                 }
             });
+        }
+
+        private void sendEvaluation(Float evaluation) {
+            if (evaluation == null) return;
+            Bundle report = new Bundle();
+            report.putFloat(FirebaseAnalytics.Param.VALUE, evaluation);
+            FirebaseAnalytics.getInstance(activity)
+                    .logEvent(EVENT_NAME, report);
         }
     }
 }

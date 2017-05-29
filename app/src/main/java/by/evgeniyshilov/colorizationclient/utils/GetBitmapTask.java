@@ -25,8 +25,9 @@ public abstract class GetBitmapTask extends AsyncTask<Object, Object, Throwable>
     protected final Throwable doInBackground(Object[] params) {
         try {
             bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
-            bitmap = ImageProcessor.getGrayScale(bitmap);
             bitmap = ImageProcessor.resize(bitmap, DEFAULT_SCALE);
+            ColorizationEvaluator.setOriginal(bitmap);
+            bitmap = ImageProcessor.getGrayScale(bitmap);
             return null;
         } catch (IOException e) {
             return e;

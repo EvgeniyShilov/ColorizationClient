@@ -5,7 +5,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public final class API {
 
-    private static final String SERVER_ADDRESS = "http://192.168.0.104:8080/";
+    private static final String SERVER_ADDRESS = "http://192.168.0.101:8080/";
 
     private static ServerInterface server;
 
