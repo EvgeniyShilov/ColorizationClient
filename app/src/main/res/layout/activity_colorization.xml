@@ -34,6 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="@string/back"
+        android:textColor="@color/icons"
+        android:theme="@style/ButtonTheme"
         />
 
 </LinearLayout>

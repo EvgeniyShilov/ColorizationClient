@@ -41,6 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/camera"
+            android:textColor="@color/icons"
+            android:theme="@style/ButtonTheme"
             />
 
         <Button
@@ -49,6 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/gallery"
+            android:textColor="@color/icons"
+            android:theme="@style/ButtonTheme"
             />
 
         <Button
@@ -57,6 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/load"
+            android:textColor="@color/icons"
+            android:theme="@style/ButtonTheme"
             />
 
     </LinearLayout>

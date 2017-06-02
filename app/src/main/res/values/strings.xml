@@ -4,4 +4,6 @@
     <string name="gallery">Gallery</string>
     <string name="load">Load</string>
     <string name="back">Back</string>
+    <string name="colorization">Колоризация</string>
+    <string name="pick_image">Выбор изображения</string>
 </resources>
